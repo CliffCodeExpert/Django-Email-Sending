@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <title>Document</title>
+  <style>
+    .messages {
+  padding: 10px;
+  background-color: green;
+  width:40%;
+  margin-top: 5px;
+  border-radius: 10px;
+}
+
+.success {
+  background-color: #dff0d8;
+  color: #3c763d;
+  padding: 10px;
+  border: 1px solid #3c763d;
+  border-radius: 5px;
+}
+
+.success button {
+  float: right;
+  padding: 5px 10px;
+  border: none;
+  background-color: #3c763d;
+  color: white;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.success button:hover {
+  background-color: #2f6131;
+}
+
+  </style>
+</head>
+<body>
+  
+<!--Start Home-->
+<!-- Start of the home section, which appears to be a contact section of a website -->
+<section id="home" class="home">
+  
+  <!-- Begin contact division that likely contains the contact form and related content -->
+  <div class="contact">
+    
+    <!-- Division for the subtitle, possibly for styling and positioning -->
+    <div class="sub-title">
+      
+      <!-- Heading prompting the user to get in touch -->
+      <h1>Get In Touch</h1>
+      
+    </div>
+    <!-- ... other potential content or elements ... -->
+
+    <!-- Checking if there are any messages (e.g., success or error messages) to display -->
+    {% if messages %}
+    <div class="messages">
+        <!-- Looping through each message in the messages queryset -->
+        {% for message in messages %}
+            
+            <!-- Displaying the actual message content -->
+            {{message}}
+            
+            <!-- OK button; when clicked, redirects the user to the root/home page -->
+            <button onclick="window.location.href='/'">OK</button>
+            
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- ... other potential content or elements ... -->
+
+    <!-- Contact form starts here -->
+    <form action="" method="post">
+      
+      <!-- CSRF token for security: prevents cross-site request forgery attacks -->
+      {% csrf_token %}
+      
+      <!-- Rendering the contact form fields as paragraphs -->
+      {{form.as_p}}
+      
+      <!-- Submit button for the form -->
+      <input type="submit" value="Send">
+      
+    </form>
+  </div>
+</section>
+
+</body>
+</html>
